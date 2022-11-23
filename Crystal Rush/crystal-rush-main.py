@@ -72,7 +72,12 @@ class Robot(Entity):
         if self.item == AMADEUSIUM:
             self.move(0, self.y)
             return
-    
+
+        # Robot's got a RADAR or a TRAP
+        if self.item == RADAR or self.item == TRAP:
+            self.dig(self.destination)
+            return
+        
         # Robot requesting RADAR
         if (
             game.radar_requested == False and
@@ -86,29 +91,20 @@ class Robot(Entity):
             game.radar_requested = True
             game.nb_radars_requested += 1
             return
-
-        # Robot's got a RADAR
-        if self.item == RADAR:
-            self.dig(self.destination)
-            return
         
         # Robot requesting a trap
         if (
             game.trap_requested == False and
             self.x == 0 and
             self.item == -1 and
-            #len(game.trap_spots) > 0 and
+            len(game.trap_spots) > 0 and
             game.trap_cooldown == 0
         ):
-            self.destination = sorted(list(filter(game.trap_spots, game.grid.cells)), key =lambda x: self.distance(x))
+            sorted_trap_spots = sorted(game.trap_spots, key =lambda x: self.distance(x))
+            self.destination = sorted_trap_spots[0]
             self.request(TRAP, "Kaboom Boom!")
             game.trap_requested = True
             game.nb_traps_requested += 1
-            return
-
-        # Robot's got a TRAP
-        if self.item == TRAP:
-            self.dig(self.destination)
             return
         
         # Robots going to the closest spot available
@@ -120,18 +116,17 @@ class Robot(Entity):
                     return
         
         if game.radar_cooldown == 0 and game.nb_radars_requested <= 12:
-                self.move(0, self.y)
-                return
+            self.move(0, self.y)
+            return
         
         if game.trap_cooldown == 0 and game.nb_traps_requested <= 12: 
-                self.move(0, self.y)
-                return
+            self.move(0, self.y)
+            return
             
             
-        if cpturn % 3 == 0:
-            if cell not in game.traps:
-                self.dig(self)
-                return
+        if cpturn % 3 == 0 and game.grid.get_cell(self.x, self.y) not in game.traps:
+            self.dig(self)
+            return
 
         self.move_at_random()
 
@@ -208,7 +203,7 @@ class Game:
         self.traps = []
         self.trap_requested = False
         self.nb_traps_requested = 0
-        self.trap_spots = lambda c : c.amadeusium >= 1 and c.amadeusium <= 2
+        self.trap_spots = list(filter(lambda c : c.amadeusium >= 1 and c.amadeusium <= 2, self.grid.cells))
         # [
         #     self.grid.get_cell(9, 9),
         #     self.grid.get_cell(8, 13),
@@ -222,7 +217,7 @@ class Game:
     def reset(self):
         self.radars = []
         self.traps = []
-        self.trap_spots = []
+        #self.trap_spots = []
         self.radar_requested = False
         self.trap_requested = False
         
