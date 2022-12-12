@@ -14,7 +14,7 @@ while True:
     highest_mountain_index = 1
     for i in range(8):
         mountain_height = int(input())  # represents the height of one mountain.
-        if mountain_height > highest_mountain :
+        if mountain_height > highest_mountain:
             highest_mountain = mountain_height
             highest_mountain_index = i
 

@@ -15,8 +15,8 @@ while True:
         for j in range(width):
             # ore: amount of ore or "?" if unknown
             # hole: 1 if cell has a hole
-            ore = inputs[2*j]
-            hole = int(inputs[2*j+1])
+            ore = inputs[2 * j]
+            hole = int(inputs[2 * j + 1])
     # entity_count: number of entities visible to you
     # radar_cooldown: turns left until a new radar can be requested
     # trap_cooldown: turns left until a new trap can be requested
