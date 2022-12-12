@@ -13,6 +13,7 @@ RADAR = 2
 TRAP = 3
 AMADEUSIUM = 4
 
+
 class Pos:
     def __init__(self, x, y):
         self.x = x
@@ -55,7 +56,7 @@ class Robot(Entity):
         print(f"DIG {cell.x} {cell.y} {message}")
 
     def request(self, requested_item, message=""):
-        #self.destination = None
+        # self.destination = None
         if requested_item == RADAR:
             print(f"REQUEST RADAR {message}")
         elif requested_item == TRAP:
@@ -72,18 +73,18 @@ class Robot(Entity):
         if self.item == AMADEUSIUM:
             self.move(0, self.y)
             return
-        
+
         if self.item == RADAR or self.item == TRAP:
             self.dig(self.destination)
             return
-    
+
         # Radar request conditions
         if (
-            game.radar_requested == False and
-            self.x == 0 and
-            self.item == -1 and
-            len(game.radar_spots) > 0 and
-            game.radar_cooldown == 0
+            game.radar_requested == False
+            and self.x == 0
+            and self.item == -1
+            and len(game.radar_spots) > 0
+            and game.radar_cooldown == 0
         ):
             self.destination = game.radar_spots.pop(0)
             self.request(RADAR, "Call me Radar")
@@ -94,7 +95,7 @@ class Robot(Entity):
         # if game.radar_cooldown == 0 :
         #     game.radar_requested = False
 
-         # Trap request conditions
+        # Trap request conditions
         # if (
         #     game.trap_requested == False and
         #     self.x == 0 and
@@ -109,25 +110,26 @@ class Robot(Entity):
         #     return
 
         # Robots going to the closest spot available
-        sorted_cells = sorted(game.grid.cells, key = lambda c: self.distance(c))
+        sorted_cells = sorted(game.grid.cells, key=lambda c: self.distance(c))
         for cell in sorted_cells:
             if cell.amadeusium > 0:
                 self.dig(cell, "Cha-Ching!")
                 return
-        
+
         if game.radar_cooldown == 0 and game.nb_radars_requested <= 6:
-                self.move(0, self.y)
-                return
-        
-        # if game.trap_cooldown == 0 and game.nb_traps_requested <= 6: 
+            self.move(0, self.y)
+            return
+
+        # if game.trap_cooldown == 0 and game.nb_traps_requested <= 6:
         #         self.move(0, self.y)
         #         return
-            
+
         if cpturn % 3 == 0:
             self.dig(self)
             return
 
         self.move_at_random()
+
 
 class Cell(Pos):
     def __init__(self, x, y, amadeusium, hole):
@@ -197,7 +199,7 @@ class Game:
             self.grid.get_cell(19, 11),
             self.grid.get_cell(26, 7),
             self.grid.get_cell(26, 3),
-            self.grid.get_cell(26, 11)
+            self.grid.get_cell(26, 11),
         ]
         # self.traps = []
         # self.trap_requested = False
@@ -216,7 +218,7 @@ class Game:
         self.traps = []
         self.radar_requested = False
         self.trap_requested = False
-        
+
     def get_my_robot_by_id(self, an_id) -> Robot:
         for robot in self.my_robots:
             if robot.id == an_id:
@@ -240,7 +242,6 @@ class Game:
         robot.x = x
         robot.y = y
         robot.item = item
-
 
 
 game = Game()
@@ -278,7 +279,9 @@ while True:
     # entity_count: number of entities visible to you
     # radar_cooldown: turns left until a new radar can be requested
     # trap_cooldown: turns left until a new trap can be requested
-    entity_count, game.radar_cooldown, game.trap_cooldown = [int(i) for i in input().split()]
+    entity_count, game.radar_cooldown, game.trap_cooldown = [
+        int(i) for i in input().split()
+    ]
 
     game.reset()
     cpt_roles = 0
@@ -289,18 +292,18 @@ while True:
         # y: position of the entity
         # item: if this entity is a robot,
         # the item it is carrying (-1 for NONE, 2 for RADAR, 3 for TRAP, 4 for AMADEUSIUM)
-        the_id, a_type, the_x, the_y,  the_item = [int(j) for j in input().split()]
+        the_id, a_type, the_x, the_y, the_item = [int(j) for j in input().split()]
 
         if a_type == ROBOT_ALLY:
             if cpturn == 1:
-                game.my_robots.append(Robot(the_x, the_y, the_id,  the_item))
+                game.my_robots.append(Robot(the_x, the_y, the_id, the_item))
             else:
-                game.update_my_robot(the_x, the_y, the_id,  the_item)
+                game.update_my_robot(the_x, the_y, the_id, the_item)
         elif a_type == ROBOT_ENEMY:
             if cpturn == 1:
-                game.enemy_robots.append(Robot(the_x, the_y, the_id,  the_item))
+                game.enemy_robots.append(Robot(the_x, the_y, the_id, the_item))
             else:
-                game.update_enemy_robot(the_x, the_y, the_id,  the_item)
+                game.update_enemy_robot(the_x, the_y, the_id, the_item)
 
         elif a_type == TRAP:
             print(f"Trap found at [{the_x}, {the_y}]!!!", file=sys.stderr)

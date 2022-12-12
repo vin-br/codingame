@@ -15,6 +15,6 @@ for i in range(n):
 list_pi.sort()
 arr_pi = np.array(list_pi)
 difference = abs(np.ediff1d(arr_pi))
-result = np.min(difference)   
+result = np.min(difference)
 
 print(result)

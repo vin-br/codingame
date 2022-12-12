@@ -14,7 +14,9 @@ light_x, light_y, initial_tx, initial_ty = [int(i) for i in input().split()]
 
 # game loop
 while True:
-    remaining_turns = int(input())  # The remaining amount of turns Thor can move. Do not remove this line.
+    remaining_turns = int(
+        input()
+    )  # The remaining amount of turns Thor can move. Do not remove this line.
     output = ""
 
     if initial_ty > light_y:
@@ -23,7 +25,7 @@ while True:
     elif initial_ty < light_y:
         output += "S"
         initial_ty += 1
-    
+
     if initial_tx > light_x:
         output += "W"
         initial_tx -= 1
