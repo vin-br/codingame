@@ -279,9 +279,7 @@ while True:
     # entity_count: number of entities visible to you
     # radar_cooldown: turns left until a new radar can be requested
     # trap_cooldown: turns left until a new trap can be requested
-    entity_count, game.radar_cooldown, game.trap_cooldown = [
-        int(i) for i in input().split()
-    ]
+    entity_count, game.radar_cooldown, game.trap_cooldown = [int(i) for i in input().split()]
 
     game.reset()
     cpt_roles = 0
