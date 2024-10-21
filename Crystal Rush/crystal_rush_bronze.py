@@ -1,5 +1,4 @@
 import sys
-import math
 import random
 
 # height: size of the map
@@ -80,7 +79,7 @@ class Robot(Entity):
 
         # Radar request conditions
         if (
-            game.radar_requested == False
+            game.radar_requested is False
             and self.x == 0
             and self.item == -1
             and len(game.radar_spots) > 0
@@ -279,7 +278,9 @@ while True:
     # entity_count: number of entities visible to you
     # radar_cooldown: turns left until a new radar can be requested
     # trap_cooldown: turns left until a new trap can be requested
-    entity_count, game.radar_cooldown, game.trap_cooldown = [int(i) for i in input().split()]
+    entity_count, game.radar_cooldown, game.trap_cooldown = [
+        int(i) for i in input().split()
+    ]
 
     game.reset()
     cpt_roles = 0
@@ -289,7 +290,7 @@ while True:
         # a_type: 0 for your robot, 1 for other robot, 2 for radar, 3 for trap
         # y: position of the entity
         # item: if this entity is a robot,
-        # the item it is carrying (-1 for NONE, 2 for RADAR, 3 for TRAP, 4 for AMADEUSIUM)
+        # carried item: -1 for NONE, 2 for RADAR, 3 for TRAP, 4 for AMADEUSIUM
         the_id, a_type, the_x, the_y, the_item = [int(j) for j in input().split()]
 
         if a_type == ROBOT_ALLY:
