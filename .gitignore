@@ -1,15 +1,95 @@
-# VSCode
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+.env/
+venv/
+.venv/
+*.env
+*.venv
+*.egg-info/
+dist/
+build/
+pip-log.txt
+pytest_cache/
+.coverage
+.cache/
+.tox/
+.mypy_cache/
+.pytest_cache/
+# Jupyter Notebooks
+.ipynb_checkpoints/
+# PyEnv
+.python-version
+
+# ---- R ----
+.Rhistory
+.RData
+.Rproj.user/
+.Rproj/
+.Ruserdata
+*.RData
+*.Rhistory
+*.Rapp.history
+*.Rprofile
+
+# ---- SQL ----
+*.sql~
+*.sql.bak
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# ---- Linux ----
+*~
+.nfs*
+
+# ---- macOS ----
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# ---- Windows ----
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+# Windows image file caches
+*.thumbdata3--*
+
+# ---- VSCode ----
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+
 # Local History for Visual Studio Code
 .history/
 
-# macOS
-.DS_Store
+# ---- Logs and databases ----
+*.log
+*.sql~
+*.sqlite
+*.db
 
-# PyEnv
-.python-version
+# ---- Miscellaneous ----
+*.log
+*.out
+*.tmp
+*.bak
+*.swp
+*.pid
+*.seed
