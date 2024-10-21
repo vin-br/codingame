@@ -1,13 +1,19 @@
 # CodinGame
 
-Dépôt de Vincent Boettcher
 
+[![CodinGame](https://img.shields.io/badge/CodinGame-Profile-yellow?style=flat&logo=codingame&logoColor=white)](https://www.codingame.com/profile/bf2837204fb4442bda80f17459e8785e9714015) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vin-br/
+)
 
-Niveau : Bronze - Argent selon les challenges
+This repository contains my solutions to various coding challenges from [CodinGame](https://www.codingame.com/).
 
-Langage : Python
+## Languages Used
+- Python
+- SQL
 
+## About
 
-Lien vers mon profil CodinGame : https://www.codingame.com/profile/bf2837204fb4442bda80f17459e8785e9714015
+These solutions demonstrate my approach to solving algorithmic problems using different programming languages.
 
-Lien vers mon profil LinkedIn : https://www.linkedin.com/in/vincentboettcher/
+## Disclamer
+
+This repository is intended for educational purposes only.
