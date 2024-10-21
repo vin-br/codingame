@@ -1,6 +1,3 @@
-import sys
-import math
-
 # Guidelines
 checkpoint_radius = 600
 slowingdown_dist = 1500
@@ -16,7 +13,8 @@ while True:
     # next_checkpoint_x: x position of the next check point
     # next_checkpoint_y: y position of the next check point
     # next_checkpoint_dist: distance to the next checkpoint
-    # next_checkpoint_angle: angle between your pod orientation and the direction of the next checkpoint
+    # next_checkpoint_angle: angle between your pod orientation
+    # and the direction of the next checkpoint
     (
         x,
         y,
